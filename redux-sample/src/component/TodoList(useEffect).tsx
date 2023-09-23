@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux"
 import { fetchTodos } from "store/api/todo";
+import { TodoActionTypes } from "types/todo";
 
 const TodoList: React.FC = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const TodoList: React.FC = () => {
         {pages.map((pageValue) => (
           <div
             key={pageValue}
-            onClick={() => dispatch(fetchTodos(pageValue, limit))}
+            onClick={() => dispatch({ type: TodoActionTypes.SET_TODO_PAGE, payload: pageValue })}  
             style={{
               border: pageValue === page ? "2px solid green" : "1px solid gray",
               padding: 10,
